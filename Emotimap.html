@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<title>Emotimap</title>
+
+	<div id="container" style="position:absolute; width:100%; height:100%;"></div>
+
+	<script src="sigma.min.js"></script>
+	<script src="sigma.layout.forceAtlas2.min.js"></script>
+
+	<script>
+    
+    var s = new sigma('container');
+
+
+	var nodes = {
+	"emos":[
+		"love",
+		"hate",
+		"fear",
+		"angry",
+		"lust",
+		"weakness",
+		"depression",
+		"serenity",
+		"laughter",
+		"smile",
+		"confusion",
+		"obsession",
+		"terror",
+		"awe",
+		"optimism",
+		"malice",
+		"contemplative",
+		"curious",
+		"confident",
+		"indignant",
+		"erotic",
+		"wonderous",
+		"bored",
+		"anxious",
+		"panic",
+		"rage",
+		"apprehensive",
+		"annoyed",
+		"appreciation",
+		"arrogant",
+		"abandoned",
+		"calm",
+		"defensive",
+		"determined",
+		"distressed",
+		"disgust",
+		"enthused",
+		"envy",
+		"guilt",
+		"grief",
+		"regret",
+		"sad",
+		"shame",
+		"upset",
+		"worried",
+		"happy"				
+		]
+	}
+
+
+	var i = 0;
+	
+   while (nodes.emos[i]!=undefined) {
+   
+	s.graph.addNode({id: ''+nodes.emos[i] , label: ""+nodes.emos[i], x: Math.random(), y: Math.random(), size: 1, color: '#ccc'});
+	i=i+1;
+	
+	}
+	
+	
+	var edges = {
+		"links":[
+			"love-serenity",
+			"malice-hate",
+			"fear-terror",
+			"awe-terror",
+			"angry-hate",
+			"optimism-awe",
+			"lust-obsession",
+			"confusion-obsession",
+			"weakness-depression",
+			"smile-laughter",
+			"panic-terror",
+			"panic-anxious",
+			"wonderous-awe",
+			"curious-contemplative",
+			"erotic-lust",
+			"indignant-angry",
+			"confident-smile",
+			"guilt-regret",
+			"calm-serenity",
+			"rage-angry",
+			"shame-regret",
+			"sad-grief",
+			"sad-depression",
+			"worried-fear",
+			"abandoned-depression",
+			"envy-obsession",
+			"apprehensive-worried",
+			"apprehensive-distressed",
+			"distressed-upset",
+			"arrogant-confident",
+			"appreciation-love",
+			"disgust-hate",
+			"annoyed-angry",
+			"appreciation-contemplative",
+			"determined-obsession",
+			"defensive-upset",
+			"happy-enthused",
+			"upset-indignant",
+			"wonderous-appreciation",
+			"envy-distressed",
+			"optimism-happy",
+			"happy-laughter",
+			"apprehensive-weakness",
+			"bored-calm",
+			"upset-regret"			
+			]
+	}
+
+	
+	var j = 0; 	
+	
+	while (edges.links[j]!=undefined) {
+	
+	var link = edges.links[j];
+
+	var pos = link.indexOf("-");
+	var sou = link.substring(0,pos);
+	var tar = link.substring(pos+1,link.length);
+
+	s.graph.addEdge({ id:link , source:sou , target:tar });
+	
+	j=j+1;
+	
+	}
+	
+    s.refresh();
+	s.startForceAtlas2();
+
+	</script>
+
+
+</html>
